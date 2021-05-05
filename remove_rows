@@ -1,0 +1,14 @@
+// Remove all empty rows
+// In this example, we'll remove all empty rows from the active google sheet in the tab named "this_sheet" upon opening
+
+// when rows from below column B2 contain no characters
+function myFunction() {
+  const doc = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = doc.getSheetByName("this_sheet");
+  const values = sheet.getRange("B2:B").getValues().flat();
+  values.reverse().forEach((r,i)=>{
+      if (r==""){
+         sheet.deleteRow(values.length-i+1);
+      }
+  });
+}
